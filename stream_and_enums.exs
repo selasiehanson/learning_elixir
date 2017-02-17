@@ -28,3 +28,13 @@ File.open!("./stream_and_enums.exs")
 
 Enum.map(1..10_000_000, &(&1 + 1)) |> Enum.take(5)
 Stream.map(1..10_000_000, &(&1 + 1)) |> Enum.take(5)
+
+aa = [%{a: 1, x: 4}, %{b: 2, x: 4}, %{c: 3, x: 4}]
+1..Enum.count(aa) |> Enum.map( &(&1 +1 ))
+ids = (1..Enum.count(aa)) |>  Enum.map &(%{id: &1}) 
+
+
+#  aai = Enum.with_index(aa, 1)
+#  Enum.map aai, fn {x, y} ->  Map.put(x, :id, y) end
+
+aa |> Enum.with_index( 1) |> Enum.map fn {x, y} ->  Map.put(x, :id, y) end
